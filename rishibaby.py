@@ -2188,39 +2188,26 @@ async def safe_set_chat_title(bot, chat_id, title):
 
 
 TOKENS = [
-    
-"8784112322:AAFi4h418kRF4dB7I_Obg1gamB-Z4ffmlxI",
+    "8784112322:AAFi4h418kRF4dB7I_Obg1gamB-Z4ffmlxI", # Fytbot
+    "8201935294:AAHrpsaAlKsAKYe69FvqTx8i-K5V2ExNbCc", # JATIN GOD / Newfileuncbot
+    "8783420933:AAFlctlZqexmOqekYx4ttfWXGhOQtEE-wo",
+    "8861248655:AAFynT8JA3VOr27GH_dBdgRjUFNVDOGw9o8",
+    "8912329541:AAGk6Yf7QkIeypA8Zrv5L2yao2Ft12cNq5Y",
+    "8948097772:AAEpuyTpGHhN4mkMiqkwpgMiRN03e1gbxJ8",
+    "8936408501:AAFDDos7F8sy0jCnrxamzj190piloHNB6Gg",
+    "8912485209:AAFpq109LEHZ64YxdX1qBFtAlarmDHhE124"
+]
+import threading
 
+def start_bot_threads():
+    for token in TOKENS:
+        # Har token ke liye background thread start karein
+        # (Agar aapke bot ka main function koi aur naam se hai toh yahan call kar sakte hain)
+        pass
 
+# Threading start call
+threading.Thread(target=start_bot_threads, daemon=True).start()
 
-
-
-
-"8201935294:AAHrpsaAlKsAKYe69FvqTx8i-K5V2ExNbCc",
-
-
-
-"8784112322:AAFi4h418kRF4dB7I_Obg1gamB-Z4ffmlxI",
-
-
-
-"8783420933:AAFclctlZqexm0qekYx4ttfWXGh0QtEE-wo",
-
-
-"8861248655:AAFynT8JA3V0r27GH_dBdgRjUFNVO0Gw9o8",
-
-
-
-"8912329541:AAGk6Yf7QkIeypA8Zrv5L2yao2Ft12cNq5Y",
-
-
-"8948097772:AAEpuyTpGHhN4mkMiqkWpgMiRNO3e1gbxJ8",
-
-
-"8936408501:AAFDDos7F8sy0jCnrxamzj190piloHNB6Gg",
-
-
-"8912485209:AAFpq109LEHZ64YxdX1qBFtAlarmDHhEl24",]
 
 
 
