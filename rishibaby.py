@@ -10776,14 +10776,32 @@ async def get_status_text():
 
 
 async def dummy_reply(update, context):
-  
+    query = update.callback_query
+    if query:
+        await query.answer()
+        user_id = query.from_user.id
+        if user_id == 7632768922:
+            data = query.data
+            key = data.replace("menu_", "") if data.startswith("menu_") else data
+            if 'menu_config' in globals() and hasattr(menu_config, 'get_menu'):
+                menu_data = menu_config.get_menu(key)
+                text = f"*{menu_data.get('title', 'Menu')}*\n\n{menu_data.get('caption', '')}"
+                reply_markup = get_back_keyboard() if 'get_back_keyboard' in globals() else None
+                await query.message.reply_text(text, reply_markup=reply_markup, parse_mode='Markdown')
+            else:
+                await query.message.reply_text(f"⚡ {key.upper()} Menu Unlocked!")
+        else:
+            await query.message.reply_text("⚠️ Access Denied.")
+        return
+
     if update.message:
         user_id = update.message.from_user.id
         if user_id == 7632768922:
             reply_markup = get_main_keyboard() if 'get_main_keyboard' in globals() else None
-            await update.message.reply_text('⚡ Welcome Owner! Menu is unlocked.', reply_markup=reply_markup)
+            await update.message.reply_text("⚡ Welcome Owner! Menu is unlocked.", reply_markup=reply_markup)
         else:
-            await update.message.reply_text('⚠️ This command is currently under development or disabled.')
+            await update.message.reply_text("⚠️ Access Denied.")
+          
           
                       
 
