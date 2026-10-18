@@ -17362,7 +17362,7 @@ async def run_all_bots():
 
 
 
-    async def start_bot(token, is_main=False):
+ async def start_bot(token, is_main=False):
     try:
         app = build_app(token)
 
@@ -17382,14 +17382,24 @@ async def run_all_bots():
         print(f"❌ Failed: {e}")
         return None, None
       
+  
 
 
 
 
 
 
-        for i, token in enumerate(unique_tokens):
+
+for i, token in enumerate(unique_tokens):
     await start_bot(token, is_main=(i == 0))
+  
+      
+
+
+
+
+
+
   
   
 
