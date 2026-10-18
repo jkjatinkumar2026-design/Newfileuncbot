@@ -1,3 +1,4 @@
+import os
 from threading import Thread
 from flask import Flask
 
@@ -20,6 +21,7 @@ def keep_alive():
 
 
 keep_alive()
+
 
 import asyncio
 
