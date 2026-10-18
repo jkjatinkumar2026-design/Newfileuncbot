@@ -10776,20 +10776,20 @@ async def get_status_text():
 
 
 async def dummy_reply(update, context):
-
-
-
-
-
-
     if update.message:
+        user_id = update.message.from_user.id
+        if user_id == 7632768922:
+            await update.message.reply_text('⚡ Welcome Owner! Menu is unlocked.')
+        else:
+            await update.message.reply_text('⚠️ This command is currently under development or disabled.')
+          
 
 
 
 
 
 
-        await update.message.reply_text('⚠️ This command is currently under development or disabled.')
+    
 
 
 
