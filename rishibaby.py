@@ -17392,8 +17392,14 @@ async def start_bot(token, is_main=False):
 
 
 
-for i, token in enumerate(unique_tokens):
-    await start_bot(token, is_main=(i == 0))
+async def main():
+    for i, token in enumerate(unique_tokens):
+        await start_bot(token, is_main=(i == 0))
+
+if __name__ == "__main__":
+    import asyncio
+    asyncio.run(main())
+  
   
   
       
