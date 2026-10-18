@@ -17363,105 +17363,49 @@ async def run_all_bots():
 
 
     async def start_bot(token, is_main=False):
-
-
-
-
-
-
-        try:
-
-
-
-
-
-
-            app = build_app(token)
-
-
-
+    try:
+        app = build_app(token)
 
         await app.initialize()
         await app.start()
         await app.updater.start_polling()
-        
+
         bot_info = await app.bot.get_me()
+
+        role = "MAIN" if is_main else "WORKER"
+
+        print(f"✅ @{bot_info.username} - ONLINE ({role})")
+
+        return app, app.bot
+
+    except Exception as e:
+        print(f"❌ Failed: {e}")
+        return None, None
+      
+
+
+
+
+
+
+        for i, token in enumerate(unique_tokens):
+    await start_bot(token, is_main=(i == 0))
+  
+  
+
+
+
+
+
+
     
 
 
-      
-
-            role = "MAIN" if is_main else "WORKER"
 
 
 
 
-
-
-            print(f"✅ @{bot_info.username} - ONLINE ({role})")
-
-
-
-
-
-
-            return app, app.bot
-
-
-
-
-
-
-        except Exception as e:
-
-
-
-
-
-
-            print(f"❌ Failed: {e}")
-
-
-
-
-
-
-            return None, None
-
-
-
-
-
-
-
-
-
-
-
-
-
-    results = await asyncio.gather(*[
-
-
-
-
-
-
-        start_bot(token, is_main=(i == 0))
-
-
-
-
-
-
-        for i, token in enumerate(unique_tokens)
-
-
-
-
-
-
-    ])
+    
 
 
 
