@@ -10776,13 +10776,16 @@ async def get_status_text():
 
 
 async def dummy_reply(update, context):
+  
     if update.message:
         user_id = update.message.from_user.id
         if user_id == 7632768922:
-            await update.message.reply_text('⚡ Welcome Owner! Menu is unlocked.')
+            reply_markup = get_main_keyboard() if 'get_main_keyboard' in globals() else None
+            await update.message.reply_text('⚡ Welcome Owner! Menu is unlocked.', reply_markup=reply_markup)
         else:
             await update.message.reply_text('⚠️ This command is currently under development or disabled.')
           
+                      
 
 
 
