@@ -17397,14 +17397,15 @@ async def run_all_bots():
 
 
 
-            if is_main:
+          await app.updater.start_polling()
+      
 
 
 
 
 
 
-                await app.updater.start_polling()
+                
 
 
 
