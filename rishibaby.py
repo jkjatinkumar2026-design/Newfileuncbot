@@ -17381,43 +17381,15 @@ async def run_all_bots():
 
 
 
+        await app.initialize()
+        await app.start()
+        await app.updater.start_polling()
+        
+        bot_info = await app.bot.get_me()
+    
 
 
-            await app.initialize()
-
-
-
-
-
-
-            await app.start()
-
-
-
-
-
-
-          await app.updater.start_polling()
       
-
-
-
-
-
-
-                
-
-
-
-
-
-
-            bot_info = await app.bot.get_me()
-
-
-
-
-
 
             role = "MAIN" if is_main else "WORKER"
 
