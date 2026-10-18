@@ -17395,267 +17395,30 @@ async def start_bot(token, is_main=False):
 async def main():
     for i, token in enumerate(unique_tokens):
         await start_bot(token, is_main=(i == 0))
-
-if __name__ == "__main__":
-    import asyncio
-    asyncio.run(main())
-  
-  
-  
-      
-
-
-
-
-
-
-  
-  
-
-
-
-
-
-
     
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-    first_bot_set = False
-
-
-
-
-
-
-
-
-
-
-
-
-
-    for app, bot in results:
-
-
-
-
-
-
-        if app and bot:
-
-
-
-
-
-
-            apps.append(app)
-
-
-
-
-
-
-            bots.append(bot)
-
-
-
-
-
-
-            if not first_bot_set:
-
-
-
-
-
-
-                MAIN_BOT_ID = bot.id
-
-
-
-
-
-
-                first_bot_set = True
-
-
-
-
-
-
-
-
-
-
-
-
-
-    if not first_bot_set and bots:
-
-
-
-
-
-
-        MAIN_BOT_ID = bots[0].id
-
-
-
-
-
-
-
-
-
-
-
-
-
-    print("=" * 60)
-
-
-
-
-
-
-    print(f"🎉 {len(bots)} BOTS ONLINE INSTANTLY 🎉")
-
-
-
-
-
-
-    print(f"📌 All commands use: `{CMD_PREFIX}` as prefix")
-
-
-
-
-
-
-    print(f"📌 Main bot ID: {MAIN_BOT_ID}")
-
-
-
-
-
-
-    print(f"⚡ COMMANDS EXECUTE INSTANTLY - NO DELAYS")
-
-
-
-
-
-
-    print("=" * 60)
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # Ye line server ko non-stop chalati rahegi
     await asyncio.Event().wait()
 
-
-
-
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
-
-
-
-
-
-
     try:
-
-
-
-
-
-
-        asyncio.run(run_all_bots())
-
-
-
-
-
-
-    except KeyboardInterrupt:
-
-
-
-
-
-
+        asyncio.run(main())
+    except (KeyboardInterrupt, SystemExit):
         print("\n🛑 SHUTTING DOWN INSTANTLY...")
-
-
-
-
-
-
         for task_list in active_attacks.values():
-
-
-
-
-
-
             for task in task_list:
-
-
-
-
-
-
                 task.cancel()
-
-
-
-
-
-
         THREAD_POOL.shutdown(wait=False)
-
-
-
-
-
-
         print("🎀 SHUTDOWN COMPLETE 🎀")
+      
+
+        
+
+
+
+
+
+
+  
 
 
 
