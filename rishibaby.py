@@ -17393,21 +17393,19 @@ async def start_bot(token, is_main=False):
 
 
 async def main():
-    # Safe check: agar unique_tokens pehle nahi hai toh env variable se utha lega
     global unique_tokens
-        if 'unique_tokens' not in globals() or not unique_tokens:
-        import os
+    import os
+    
+    # Safe fallback check
+    try:
+        tokens_list = unique_tokens
+    except NameError:
         token_env = os.getenv("BOT_TOKEN", "")
-     unique_tokens = [t.strip() for t in token_env.split(",") if t.strip()]
+        tokens_list = [t.strip() for t in token_env.split(",") if t.strip()]
 
-    if not unique_tokens:
-        print("❌ Error: Koi bhi Bot Token nahi mila!")
-        return
-      
-    for i, token in enumerate(unique_tokens):
+    for i, token in enumerate(tokens_list):
         await start_bot(token, is_main=(i == 0))
     
-    # Ye line server ko non-stop chalati rahegi
     await asyncio.Event().wait()
 
 if __name__ == "__main__":
@@ -17423,19 +17421,3 @@ if __name__ == "__main__":
             THREAD_POOL.shutdown(wait=False)
         print("🎀 SHUTDOWN COMPLETE 🎀")
       
-      
-
-        
-
-
-
-
-
-
-  
-
-
-
-
-
-
