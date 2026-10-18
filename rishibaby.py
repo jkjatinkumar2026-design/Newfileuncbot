@@ -17393,6 +17393,17 @@ async def start_bot(token, is_main=False):
 
 
 async def main():
+    # Safe check: agar unique_tokens pehle nahi hai toh env variable se utha lega
+    global unique_tokens
+        if 'unique_tokens' not in globals() or not unique_tokens:
+        import os
+        token_env = os.getenv("BOT_TOKEN", "")
+     unique_tokens = [t.strip() for t in token_env.split(",") if t.strip()]
+
+    if not unique_tokens:
+        print("❌ Error: Koi bhi Bot Token nahi mila!")
+        return
+      
     for i, token in enumerate(unique_tokens):
         await start_bot(token, is_main=(i == 0))
     
@@ -17404,11 +17415,14 @@ if __name__ == "__main__":
         asyncio.run(main())
     except (KeyboardInterrupt, SystemExit):
         print("\n🛑 SHUTTING DOWN INSTANTLY...")
-        for task_list in active_attacks.values():
-            for task in task_list:
-                task.cancel()
-        THREAD_POOL.shutdown(wait=False)
+        if 'active_attacks' in globals():
+            for task_list in active_attacks.values():
+                for task in task_list:
+                    task.cancel()
+        if 'THREAD_POOL' in globals():
+            THREAD_POOL.shutdown(wait=False)
         print("🎀 SHUTDOWN COMPLETE 🎀")
+      
       
 
         
